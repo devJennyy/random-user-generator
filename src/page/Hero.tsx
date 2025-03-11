@@ -20,10 +20,10 @@ const Hero = () => {
             const IconComponent = item.icon;
             return (
               <div className="group cursor-pointer flex flex-col justify-center items-center gap-2">
-                <div className="sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl transition-default bg-transparent group-hover:bg-primary">
-                  <IconComponent className="sm:text-[24px] text-[20px] text-primary/60 group-hover:text-white transition-default" />
+                <div className="sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl transition-default bg-transparent group-hover:bg-primary group-active:bg-primary">
+                  <IconComponent className="sm:text-[24px] text-[20px] text-primary/60 group-hover:text-white group-active:text-white transition-default" />
                 </div>
-                <p className="sm:text-[16px] text-sm font-medium text-primary/60 group-hover:text-primary transition-default">
+                <p className="sm:text-[16px] text-sm font-medium text-primary/60 group-hover:text-primary group-active:text-primary transition-default">
                   {item.label}
                 </p>
               </div>
