@@ -6,8 +6,10 @@ import { IoChatboxEllipses } from "react-icons/io5";
 import { MdDateRange } from "react-icons/md";
 import { TbLocationFilled } from "react-icons/tb";
 import ToggleButton from "@/components/ui/ToggleButton";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const Hero = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [active, setActive] = useState("nameTab");
   const [person, setPerson] = useState({
     image: null,
@@ -31,6 +33,7 @@ const Hero = () => {
   };
 
   const fetchUser = () => {
+    setLoading(true)
     axios
       .get("https://randomuser.me/api/")
       .then((res) => {
@@ -43,6 +46,9 @@ const Hero = () => {
           country: res.data.results[0].location.country,
           contact: res.data.results[0].phone,
         });
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
       })
       .catch((err) => {
         console.log(err);
@@ -54,7 +60,8 @@ const Hero = () => {
   }, [])
 
   return (
-    <div className="relative w-full flex flex-col items-center">
+    <div className="relative w-full flex flex-col items-center"> 
+      { loading && <LoadingSpinner/> }
       <div className="w-full lg:h-[371px] sm:h-[320px] h-[280px] bg-main border-b dark:border-b-white/5 dark:bg-midnightBlue flex flex-col lg:justify-center items-center lg:gap-10 sm:gap-8 gap-5 lg:pt-0 sm:pt-19 pt-11">
         <p className="lg:text-6xl sm:text-5xl text-[26px] font-medium text-white sm:leading-9 leading-8">
           Random User <br className="sm:hidden" />
@@ -68,7 +75,7 @@ const Hero = () => {
           <img
             src={
               person.image ||
-              "https://img.freepik.com/premium-photo/happy-woman39s-portrait-generative-ai_972075-2866.jpg"
+              ""
             }
             className="h-full w-full object-cover"
             alt="image"

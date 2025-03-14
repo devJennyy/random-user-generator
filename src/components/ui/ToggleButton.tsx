@@ -10,8 +10,8 @@ const ToggleButton = () => {
       className={`relative sm:w-20 w-16 h-[34px] sm:h-10 flex items-center sm:px-2 px-1 rounded-full bg-[#27272A] shadow-xl dark:bg-[#181A20] hover:cursor-pointer transition-all duration-300 border border-white/5 dark:border-white/6`}
     >
       <div
-        className={`absolute sm:left-2 top-1/2 transform -translate-y-1/2 sm:w-8 sm:h-8 w-[26px] h-[26px] bg-black rounded-full flex items-center justify-center transition-all duration-500 ${
-          darkMode ? "sm:translate-x-8 translate-x-[29px]" : "translate-x-0"
+        className={`absolute sm:left-1 top-1/2 transform -translate-y-1/2 sm:w-8 sm:h-8 w-[26px] h-[26px] bg-black rounded-full flex items-center justify-center transition-all duration-500 ${
+          darkMode ? "sm:translate-x-[37px] translate-x-[29px]" : "translate-x-0"
         }`}
       >
         {darkMode ? (
