@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { CgUserlane } from "react-icons/cg";
 import { IoChatboxEllipses } from "react-icons/io5";
@@ -15,7 +15,6 @@ const Hero = () => {
     lastName: "Doe",
     email: null,
     birthDate: null,
-    city: null,
     country: null,
     contact: null,
   });
@@ -41,7 +40,6 @@ const Hero = () => {
           lastName: res.data.results[0].name.last,
           email: res.data.results[0].email,
           birthDate: res.data.results[0].registered.date,
-          city: res.data.results[0].location.city,
           country: res.data.results[0].location.country,
           contact: res.data.results[0].phone,
         });
@@ -51,18 +49,22 @@ const Hero = () => {
       });
   };
 
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
   return (
     <div className="relative w-full flex flex-col items-center">
       <div className="w-full lg:h-[371px] sm:h-[320px] h-[280px] bg-main border-b dark:border-b-white/5 dark:bg-midnightBlue flex flex-col lg:justify-center items-center lg:gap-10 sm:gap-8 gap-5 lg:pt-0 sm:pt-19 pt-11">
-        <p className="lg:text-6xl sm:text-5xl text-[30px] font-medium text-white leading-9">
+        <p className="lg:text-6xl sm:text-5xl text-[26px] font-medium text-white sm:leading-9 leading-8">
           Random User <br className="sm:hidden" />
           Generator
         </p>
 
         <ToggleButton />
       </div>
-      <div className="absolute lg:top-[17rem] sm:top-[14rem] top-[12rem] w-full max-w-[750px] flex flex-col items-center sm:gap-8 gap-6">
-        <div className="sm:w-[205px] sm:h-[205px] overflow-hidden w-[170px] h-[170px] border-5 border-white rounded-3xl">
+      <div className="absolute lg:top-[17rem] sm:top-[14rem] top-[12rem] w-full max-w-[750px] flex flex-col items-center gap-8">
+        <div className="sm:w-[205px] sm:h-[205px] overflow-hidden w-[160px] h-[160px] border-5 border-white rounded-3xl">
           <img
             src={
               person.image ||
@@ -73,31 +75,31 @@ const Hero = () => {
           />
         </div>
         {active === "nameTab" && person.firstName && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px] dark:text-white">
+          <p className="sm:text-[40px] text-[28px] font-bold sm:h-[55px] h-[30px] dark:text-white">
             {person.firstName + " " + person.lastName}
           </p>
         )}
 
         {active === "emailTab" && person.email && (
-          <p className="block sm:text-[40px] text-2xl font-bold sm:h-[55px] h-[30px] md:w-full sm:w-[550px] w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
+          <p className="block sm:text-[40px] text-2xl font-bold sm:h-[55px] h-[30px] md:w-full sm:w-[550px] w-[300px] overflow-hidden text-ellipsis whitespace-nowrap">
             {person.email}
           </p>
         )}
 
         {active === "birthdateTab" && person.birthDate && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px]">
+          <p className="sm:text-[40px] text-[28px] font-bold sm:h-[55px] h-[30px]">
             {formatDate(person.birthDate)}
           </p>
         )}
 
         {active === "locationTab" && person.country && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px]">
-            {person.city + ", " + person.country}
+          <p className="sm:text-[40px] text-[28px] font-bold sm:h-[55px] h-[30px]">
+            {person.country}
           </p>
         )}
 
         {active === "contactTab" && person.contact && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px]">
+          <p className="sm:text-[40px] text-[28px] font-bold sm:h-[55px] h-[30px]">
             {"+" + person.contact}
           </p>
         )}
