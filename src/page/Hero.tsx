@@ -1,4 +1,3 @@
-import { Switch } from "@/components/ui/switch";
 import axios from "axios";
 import { useState } from "react";
 import { BiSolidPhoneCall } from "react-icons/bi";
@@ -6,6 +5,7 @@ import { CgUserlane } from "react-icons/cg";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { MdDateRange } from "react-icons/md";
 import { TbLocationFilled } from "react-icons/tb";
+import ToggleButton from "@/components/ui/ToggleButton";
 
 const Hero = () => {
   const [active, setActive] = useState("nameTab");
@@ -53,15 +53,15 @@ const Hero = () => {
 
   return (
     <div className="relative w-full flex flex-col items-center">
-      <div className="w-full lg:h-[361px] sm:h-[320px] h-[280px] bg-primary flex flex-col lg:justify-center items-center lg:gap-10 sm:gap-8 gap-5 lg:pt-0 sm:pt-19 pt-11">
+      <div className="w-full lg:h-[371px] sm:h-[320px] h-[280px] bg-main border-b dark:border-b-white/5 dark:bg-midnightBlue flex flex-col lg:justify-center items-center lg:gap-10 sm:gap-8 gap-5 lg:pt-0 sm:pt-19 pt-11">
         <p className="lg:text-6xl sm:text-5xl text-[30px] font-medium text-white leading-9">
           Random User <br className="sm:hidden" />
           Generator
         </p>
 
-        <Switch />
+        <ToggleButton />
       </div>
-      <div className="absolute lg:top-[17rem] sm:top-[14rem] top-[12rem] w-full max-w-[750px] flex flex-col items-center gap-6">
+      <div className="absolute lg:top-[17rem] sm:top-[14rem] top-[12rem] w-full max-w-[750px] flex flex-col items-center sm:gap-8 gap-6">
         <div className="sm:w-[205px] sm:h-[205px] overflow-hidden w-[170px] h-[170px] border-5 border-white rounded-3xl">
           <img
             src={
@@ -73,52 +73,54 @@ const Hero = () => {
           />
         </div>
         {active === "nameTab" && person.firstName && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[48px] h-[30px]">
+          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px] dark:text-white">
             {person.firstName + " " + person.lastName}
           </p>
         )}
 
         {active === "emailTab" && person.email && (
-          <p className="flex items-center sm:text-[40px] text-2xl font-bold sm:h-[48px] h-[30px]">
+          <p className="block sm:text-[40px] text-2xl font-bold sm:h-[55px] h-[30px] md:w-full sm:w-[550px] w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
             {person.email}
           </p>
         )}
 
         {active === "birthdateTab" && person.birthDate && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[48px] h-[30px]">
+          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px]">
             {formatDate(person.birthDate)}
           </p>
         )}
 
         {active === "locationTab" && person.country && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[48px] h-[30px]">
+          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px]">
             {person.city + ", " + person.country}
           </p>
         )}
 
         {active === "contactTab" && person.contact && (
-          <p className="sm:text-[40px] text-3xl font-bold sm:h-[48px] h-[30px]">
+          <p className="sm:text-[40px] text-3xl font-bold sm:h-[55px] h-[30px]">
             {"+" + person.contact}
           </p>
         )}
 
-        <div className="flex sm:gap-12 gap-4 !mt-4">
+        <div className="flex sm:gap-12 gap-4 !mt-2">
           <button
             onClick={() => setActive("nameTab")}
-            className="cursor-pointer flex flex-col justify-center items-center gap-2"
+            className="cursor-pointer flex flex-col justify-center items-center gap-2 group"
           >
             <div
               className={`transition-default sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl ${
                 active === "nameTab"
-                  ? "bg-primary text-white"
-                  : "bg-transparent text-primary"
+                  ? "bg-main dark:bg-white text-white dark:text-main"
+                  : "bg-transparent text-main/90 dark:text-white/90 group-hover:bg-main/10 dark:group-hover:bg-white/10"
               }`}
             >
               <CgUserlane className="sm:text-[24px] text-[20px]" />
             </div>
             <p
-              className={`sm:text-[16px] text-sm font-medium ${
-                active === "nameTab" ? "text-primary" : "text-primary/60"
+              className={`transition-default sm:text-[16px] text-sm font-medium ${
+                active === "nameTab"
+                  ? "text-main dark:text-white"
+                  : "text-main/80 dark:text-white/70 group-hover:text-main dark:group-hover:text-white"
               }`}
             >
               Name
@@ -127,20 +129,22 @@ const Hero = () => {
 
           <button
             onClick={() => setActive("birthdateTab")}
-            className="cursor-pointer flex flex-col justify-center items-center gap-2"
+            className="cursor-pointer flex flex-col justify-center items-center gap-2 group"
           >
             <div
               className={`transition-default sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl ${
                 active === "birthdateTab"
-                  ? "bg-primary text-white"
-                  : "bg-transparent text-primary"
+                  ? "bg-main dark:bg-white text-white dark:text-main"
+                  : "bg-transparent text-main/90 dark:text-white/90 group-hover:bg-main/10 dark:group-hover:bg-white/10"
               }`}
             >
               <MdDateRange className="sm:text-[24px] text-[20px]" />
             </div>
             <p
               className={`transition-default sm:text-[16px] text-sm font-medium ${
-                active === "birthdateTab" ? "text-primary" : "text-primary/60"
+                active === "birthdateTab"
+                  ? "text-main dark:text-white"
+                  : "text-main/80 dark:text-white/70 group-hover:text-main dark:group-hover:text-white"
               }`}
             >
               BirthDate
@@ -149,20 +153,22 @@ const Hero = () => {
 
           <button
             onClick={() => setActive("emailTab")}
-            className="cursor-pointer flex flex-col justify-center items-center gap-2"
+            className="cursor-pointer flex flex-col justify-center items-center gap-2 group"
           >
             <div
               className={`transition-default sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl ${
                 active === "emailTab"
-                  ? "bg-primary text-white"
-                  : "bg-transparent text-primary"
+                  ? "bg-main dark:bg-white text-white dark:text-main"
+                  : "bg-transparent text-main/90 dark:text-white/90 group-hover:bg-main/10 dark:group-hover:bg-white/10"
               }`}
             >
               <IoChatboxEllipses className="sm:text-[24px] text-[20px]" />
             </div>
             <p
               className={`transition-default sm:text-[16px] text-sm font-medium ${
-                active === "emailTab" ? "text-primary" : "text-primary/60"
+                active === "emailTab"
+                  ? "text-main dark:text-white"
+                  : "text-main/80 dark:text-white/70 group-hover:text-main dark:group-hover:text-white"
               }`}
             >
               Email
@@ -171,20 +177,22 @@ const Hero = () => {
 
           <button
             onClick={() => setActive("locationTab")}
-            className="cursor-pointer flex flex-col justify-center items-center gap-2"
+            className="cursor-pointer flex flex-col justify-center items-center gap-2 group"
           >
             <div
               className={`transition-default sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl ${
                 active === "locationTab"
-                  ? "bg-primary text-white"
-                  : "bg-transparent text-primary"
+                  ? "bg-main dark:bg-white text-white dark:text-main"
+                  : "bg-transparent text-main/90 dark:text-white/90 group-hover:bg-main/10 dark:group-hover:bg-white/10"
               }`}
             >
               <TbLocationFilled className="sm:text-[24px] text-[20px]" />
             </div>
             <p
               className={`transition-default sm:text-[16px] text-sm font-medium ${
-                active === "locationTab" ? "text-primary" : "text-primary/60"
+                active === "locationTab"
+                  ? "text-main dark:text-white"
+                  : "text-main/80 dark:text-white/70 group-hover:text-main dark:group-hover:text-white"
               }`}
             >
               Location
@@ -193,20 +201,22 @@ const Hero = () => {
 
           <button
             onClick={() => setActive("contactTab")}
-            className="cursor-pointer flex flex-col justify-center items-center gap-2"
+            className="cursor-pointer flex flex-col justify-center items-center gap-2 group"
           >
             <div
               className={`transition-default sm:w-[65px] sm:h-[65px] w-[50px] h-[50px] flex justify-center items-center sm:rounded-3xl rounded-2xl ${
                 active === "contactTab"
-                  ? "bg-primary text-white"
-                  : "bg-transparent text-primary"
+                  ? "bg-main dark:bg-white text-white dark:text-main"
+                  : "bg-transparent text-main/90 dark:text-white/90 group-hover:bg-main/10 dark:group-hover:bg-white/10"
               }`}
             >
               <BiSolidPhoneCall className="sm:text-[24px] text-[20px]" />
             </div>
             <p
               className={`transition-default sm:text-[16px] text-sm font-medium ${
-                active === "contactTab" ? "text-primary" : "text-primary/60"
+                active === "contactTab"
+                  ? "text-main dark:text-white"
+                  : "text-main/80 dark:text-white/70 group-hover:text-main dark:group-hover:text-white"
               }`}
             >
               Contact
@@ -216,7 +226,7 @@ const Hero = () => {
 
         <button
           onClick={() => fetchUser()}
-          className="sm:text-lg sm:px-10 px-8 py-3 sm:py-3 border bg-primary hover:bg-black active:bg-black transition-default text-white rounded-lg font-medium cursor-pointer sm:!mt-10 mt-5"
+          className="sm:text-lg sm:px-10 px-8 py-3 sm:py-3 border bg-main dark:bg-white hover:bg-black dark:hover:border-white/90 dark:hover:bg-transparent dark:active:bg-transparent dark:border active:bg-black dark:active:border-white/90 transition-default text-white dark:text-main dark:hover:text-white dark:active:text-white rounded-lg font-medium cursor-pointer sm:!mt-10 mt-5"
         >
           Generate
         </button>

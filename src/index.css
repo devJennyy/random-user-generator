@@ -2,10 +2,10 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #202225;
+  --color-main: #191B20;
   --color-midnightBlue: #23272F;
   --color-darkGray: #3F3F43;
   --breakpoint-sm: 640px;
