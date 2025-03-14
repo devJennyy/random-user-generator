@@ -75,7 +75,7 @@ const Hero = () => {
           <img
             src={
               person.image ||
-              ""
+              undefined
             }
             className="h-full w-full object-cover"
             alt="image"
@@ -156,7 +156,7 @@ const Hero = () => {
                   : "text-main/80 dark:text-white/70 group-hover:text-main dark:group-hover:text-white"
               }`}
             >
-              BirthDate
+              Birthday
             </p>
           </button>
 
